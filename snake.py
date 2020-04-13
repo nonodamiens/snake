@@ -62,7 +62,7 @@ while go:
 	elif d == "right" and (j_coord[0], j_coord[1] + 1) not in t_coord:
 		t_coord = [j_coord] + t_coord[:-1]
 		j_coord = (j_coord[0], j_coord[1] + 1)
-	elif d == "left" and (j_coord[0], j_coord[1] - 1) not in t_coord:y
+	elif d == "left" and (j_coord[0], j_coord[1] - 1) not in t_coord:
 		t_coord = [j_coord] + t_coord[:-1]
 		j_coord = (j_coord[0], j_coord[1] - 1)
 	else:
@@ -84,5 +84,7 @@ while go:
 		points += 100
 		t_coord = [j_coord] + t_coord
 		p_coord = (random.randint(0, 8), random.randint(0, 8))
+		while p_coord in t_coord:
+			p_coord = (random.randint(0, 8), random.randint(0, 8))
 	x = ''
 

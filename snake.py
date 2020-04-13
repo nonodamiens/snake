@@ -13,9 +13,9 @@ pastille = "●"
 
 j_coord = (4, 4)
 t_coord =[(3, 4)]
-p_coord = (random.randint(0, 9), random.randint(0, 9))
+p_coord = (random.randint(0, 8), random.randint(0, 8))
 while p_coord == j_coord:
-	p_coord = (random.randint(0, 9), random.randint(0, 9))
+	p_coord = (random.randint(0, 8), random.randint(0, 8))
 go = True
 d = 'down'
 x = ""
@@ -53,17 +53,17 @@ while go:
 		d = {b"H": "up", b"P": "down", b"M": "right", b"K": "left"}[getch()]
 	elif x == b"q":
 		go = False
-	if d == "up" and t_coord[0] != (j_coord[0] - 1, j_coord[1]):
-		t_coord[0] = j_coord
+	if d == "up" and (j_coord[0] - 1, j_coord[1]) not in t_coord:
+		t_coord = [j_coord] + t_coord[:-1]
 		j_coord = (j_coord[0] - 1, j_coord[1])
-	elif d == "down" and t_coord[0] != (j_coord[0] + 1, j_coord[1]):
-		t_coord[0] = j_coord
+	elif d == "down" and (j_coord[0] + 1, j_coord[1]) not in t_coord:
+		t_coord = [j_coord] + t_coord[:-1]
 		j_coord = (j_coord[0] + 1, j_coord[1])
-	elif d == "right" and t_coord[0] != (j_coord[0], j_coord[1] + 1):
-		t_coord[0] = j_coord
+	elif d == "right" and (j_coord[0], j_coord[1] + 1) not in t_coord:
+		t_coord = [j_coord] + t_coord[:-1]
 		j_coord = (j_coord[0], j_coord[1] + 1)
-	elif d == "left" and t_coord[0] != (j_coord[0], j_coord[1] - 1):
-		t_coord[0] = j_coord
+	elif d == "left" and (j_coord[0], j_coord[1] - 1) not in t_coord:y
+		t_coord = [j_coord] + t_coord[:-1]
 		j_coord = (j_coord[0], j_coord[1] - 1)
 	else:
 		die = True
@@ -82,6 +82,7 @@ while go:
 			go = False
 	elif j_coord == p_coord:
 		points += 100
+		t_coord = [j_coord] + t_coord
 		p_coord = (random.randint(0, 8), random.randint(0, 8))
 	x = ''
 

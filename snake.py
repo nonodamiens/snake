@@ -40,6 +40,7 @@ while go:
 
 	print("┌─────────┐\n│{}│\n│{}│\n│{}│\n│{}│\n│{}│\n│{}│\n│{}│\n│{}│\n│{}│\n└─────────┘"\
 		.format(area["0"], area["1"], area["2"], area["3"], area["4"], area["5"], area["6"], area["7"], area["8"]))
+	print("pastille:", p_coord)
 	print("coord joueur:", j_coord)
 	print("score:", points)
 
@@ -72,6 +73,6 @@ while go:
 			go = False
 	elif j_coord == p_coord:
 		points += 100
-		p_coord = (random.randint(0, 9), random.randint(0, 9))
+		p_coord = (random.randint(0, 8), random.randint(0, 8))
 	x = ''
 

@@ -1,17 +1,22 @@
 import pygame
+# importatio de constantes de pygame
+from pygame.locals import *
 
+# Initialisation de pygame
 pygame.init()
 
-ecran = pygame.display.set_mode((300, 200))
-image = pygame.image.load("avatar_icone.png").convert_alpha()
+# création d'une fenetre
+fenetre = pygame.display.set_mode((640, 480))
 
-continuer = True
+# ajout d'un background
+fond = pygame.image.load("background.png").convert()
 
-while continuer:
-    ecran.blit(image, (0, 50))
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            continuer = False
-    pygame.display.flip()
+# affichage du fond dans la fenetre
+fenetre.blit(fond, (0, 0))
 
-pygame.quit()
+# Ajout d'un personnage
+perso = pygame.image.load("perso.png").convert_alpha()
+fenetre.blit(perso, (200, 300))
+
+# rafraichissement de la fenetre pour afficher l'image de fond
+pygame.display.flip()

@@ -1,18 +1,19 @@
 import pygame
-# importatio de constantes de pygame
 from pygame.locals import *
 
 # Initialisation de pygame
 pygame.init()
 
-# création d'une fenetre
-fenetre = pygame.display.set_mode((640, 480))
+# création d'une fenetre avec fond vert
+fenetre = pygame.display.set_mode((100, 100))
+fenetre.fill([0,250,0])
 
-# ajout d'un background
-fond = pygame.image.load("background.png").convert()
+# ajout d'un background ou d'une couleur de fond
+# fond = pygame.image.load("background.png").convert()
+
 
 # affichage du fond dans la fenetre
-fenetre.blit(fond, (0, 0))
+# fenetre.blit(fond, (0, 0))
 
 # Ajout d'un personnage et enregistrement position
 perso = pygame.image.load("perso.png").convert_alpha()
@@ -39,6 +40,6 @@ while continuer:
                 position_perso = position_perso.move(0, 3)
             if event.key == K_UP:
                 position_perso = position_perso.move(0, -3)
-    fenetre.blit(fond, (0, 0))
+    # fenetre.blit(fond, (0, 0))
     fenetre.blit(perso, position_perso)
     pygame.display.flip()

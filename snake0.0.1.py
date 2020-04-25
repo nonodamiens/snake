@@ -18,6 +18,8 @@ snake_direction = "D" # initialize snake direction to down
 snake_speed = 500
 snake_move = USEREVENT + 1
 pygame.time.set_timer(snake_move, snake_speed)
+snake_tail = pygame.draw.rect(fenetre, [0, 0, 200], (40, 30, 10, 10))
+snake_tail_positions = [snake_tail]
 
 # Création d'un sprite pomme
 apple_x = random.randint(0, 9) * 10
@@ -49,12 +51,16 @@ while continuer:
                 snake_direction = "U"
         if event.type == snake_move:
             if snake_direction == "R"  and snake_head.x < 90:
+                snake_tail_positions = [snake_head.copy()] + snake_tail_positions[:-1]
                 snake_head.move_ip(10, 0)
             if snake_direction == "L"  and snake_head.x > 0:
+                snake_tail_positions = [snake_head.copy()] + snake_tail_positions[:-1]
                 snake_head.move_ip(-10, 0)
             if snake_direction == "D"  and snake_head.y < 90:
+                snake_tail_positions = [snake_head.copy()] + snake_tail_positions[:-1]
                 snake_head.move_ip(0, 10)
             if snake_direction == "U"  and snake_head.y > 0:
+                snake_tail_positions = [snake_head.copy()] + snake_tail_positions[:-1]
                 snake_head.move_ip(0, -10)
         if snake_head.x == apple.x and snake_head.y == apple.y:
             while apple.x == snake_head.x:
@@ -64,6 +70,9 @@ while continuer:
         
     fenetre.fill([0,250,0]) # 'clear' the surface
     pygame.draw.rect(fenetre, (250, 0, 0), apple) # draw the apple
+    for tail in snake_tail_positions:
+        print(tail)
+        pygame.draw.rect(fenetre, (0, 0, 200), tail)
     pygame.draw.rect(fenetre, (0, 0, 250), snake_head) # draw the new rectangle
 
     pygame.display.flip()

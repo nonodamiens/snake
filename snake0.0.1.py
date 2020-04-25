@@ -32,6 +32,10 @@ pygame.display.flip()
 # Répétition si touche enfoncé
 pygame.key.set_repeat(400, 30)
 
+# print des infos
+print(pygame.display.Info())
+print(pygame.get_sdl_version())
+
 continuer = 1
 while continuer:
     for event in pygame.event.get():

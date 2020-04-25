@@ -4,6 +4,9 @@ from pygame.locals import *
 # Initialisation de pygame
 pygame.init()
 
+# Title
+pygame.display.set_caption("SNAKE")
+
 # création d'une fenetre avec fond vert
 fenetre = pygame.display.set_mode((100, 100))
 fenetre.fill([0,250,0])

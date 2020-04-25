@@ -15,7 +15,7 @@ fenetre.fill([0,250,0])
 # Création du sprite snake
 snake_head = pygame.draw.rect(fenetre, [0, 0, 250], (40,40,10,10))
 snake_direction = "D" # initialize snake direction to down
-snake_speed = 500
+snake_speed = 250
 snake_move = USEREVENT + 1
 pygame.time.set_timer(snake_move, snake_speed)
 snake_tail = pygame.draw.rect(fenetre, [0, 0, 200], (40, 30, 10, 10))
@@ -87,11 +87,13 @@ while continuer:
                 apple.x = random.randint(0, 9) * 10
             while apple.y == snake_head.y:
                 apple.y = random.randint(0, 9) * 10
-        
+
     fenetre.fill([0,250,0]) # 'clear' the surface
     pygame.draw.rect(fenetre, (250, 0, 0), apple) # draw the apple
     for tail in snake_tail_positions[:-1]:
-        print(tail)
+        if snake_head.x == tail.x and snake_head.y == tail.y:
+            print("perdu")
+            continuer = 0
         pygame.draw.rect(fenetre, (0, 0, 200), tail)
     pygame.draw.rect(fenetre, (0, 0, 250), snake_head) # draw the new rectangle
 

@@ -38,14 +38,14 @@ while continuer:
         if event.type == QUIT:
             continuer = 0
         if event.type == KEYDOWN:
-            if event.key == K_RIGHT:
+            if event.key == K_RIGHT and snake_head.x < 90:
                 snake_head.move_ip(10, 0)
-            if event.key == K_LEFT:
-                snake_head.x -= 10
-            if event.key == K_DOWN:
-                snake_head.y += 10
-            if event.key == K_UP:
-                snake_head.y -= 10
+            if event.key == K_LEFT  and snake_head.x > 0:
+                snake_head.move_ip(-10, 0)
+            if event.key == K_DOWN  and snake_head.y < 90:
+                snake_head.move_ip(0, 10)
+            if event.key == K_UP  and snake_head.y > 0:
+                snake_head.move_ip(0, -10)
     fenetre.fill([0,250,0])            
     pygame.draw.rect(fenetre, (0, 0, 250), snake_head)
     # fenetre.blit(fond, (0, 0))

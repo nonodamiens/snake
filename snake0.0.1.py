@@ -82,10 +82,12 @@ while continuer:
                     snake_tail_positions = [snake_head.copy()] + snake_tail_positions[:-1]
                 snake_head.move_ip(0, -10)
         if snake_head.x == apple.x and snake_head.y == apple.y:
+            apple.x = random.randint(0, 9) * 10
+            apple.y = random.randint(0, 9) * 10
             apple_ate = True
-            while apple.x == snake_head.x:
+            snake_coord = [(snake_head.x, snake_head.y)] + [(tail.x, tail.y) for tail in snake_tail_positions]
+            while (apple.x, apple.y) in snake_coord:
                 apple.x = random.randint(0, 9) * 10
-            while apple.y == snake_head.y:
                 apple.y = random.randint(0, 9) * 10
 
     fenetre.fill([0,250,0]) # 'clear' the surface

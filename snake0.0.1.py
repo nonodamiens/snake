@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import random
 
 # Initialisation de pygame
 pygame.init()
@@ -12,11 +13,20 @@ fenetre = pygame.display.set_mode((100, 100))
 fenetre.fill([0,250,0])
 
 # Création du sprite snake
-snake_head = pygame.draw.rect(fenetre, [0, 0, 250], (0,0,10,10))
+snake_head = pygame.draw.rect(fenetre, [0, 0, 250], (40,40,10,10))
 snake_direction = "D" # initialize snake direction to down
 snake_speed = 500
 snake_move = USEREVENT + 1
 pygame.time.set_timer(snake_move, snake_speed)
+
+# Création d'un sprite pomme
+apple_x = random.randint(0, 9) * 10
+apple_y = random.randint(0, 9) * 10
+while apple_x == 40:
+    apple_x = random.randint(0, 9) * 10
+while apple_y == 40:
+    apple_y = random.randint(0, 9) * 10
+apple = pygame.draw.rect(fenetre, [250, 0, 0], (apple_x, apple_y, 10, 10))
 
 # print des infos
 print(pygame.display.Info())
@@ -48,5 +58,7 @@ while continuer:
                 snake_head.move_ip(0, -10)
         
     fenetre.fill([0,250,0]) # 'clear' the surface
+    pygame.draw.rect(fenetre, (250, 0, 0), apple) # draw the apple
     pygame.draw.rect(fenetre, (0, 0, 250), snake_head) # draw the new rectangle
+
     pygame.display.flip()
